@@ -20,3 +20,13 @@ class Rotor:
         i = (ALPHABET.index(ch) + self.position) % 26
         c = self.inverse[i]
         return ALPHABET[(ALPHABET.index(c) - self.position) % 26]
+
+def validate_wiring(wiring):
+    return len(wiring) == 26 and set(wiring) == set(ALPHABET)
+
+
+def get_inverse_wiring(wiring):
+    inv = [''] * 26
+    for i, c in enumerate(wiring):
+        inv[ALPHABET.index(c)] = ALPHABET[i]
+    return "".join(inv)
