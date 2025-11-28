@@ -1,17 +1,11 @@
 ````
-               _,.,  °               ,.         ,·´'; '        ,.-·.               ,.-·^*ª'` ·,            ,·'´¨;.  '                                   ,.,   '      
-        ,.·'´  ,. ,  `;\ '        ;'´*´ ,'\       ,'  ';'\°      /    ;'\'          .·´ ,·'´:¯'`·,  '\‘         ;   ';:\           .·´¨';\                 ;´   '· .,     
-      .´   ;´:::::\`'´ \'\        ;    ';::\      ;  ;::'\     ;    ;:::\       ,´  ,'\:::::::::\,.·\'       ;     ';:'\      .'´     ;:'\              .´  .-,    ';\   
-     /   ,'::\::::::\:::\:'      ;      '\;'      ;  ;:::;    ';    ;::::;'     /   /:::\;·'´¯'`·;\:::\°     ;   ,  '·:;  .·´,.´';  ,'::;'             /   /:\:';   ;:'\' 
-    ;   ;:;:-·'~^ª*';\'´       ,'  ,'`\   \      ;  ;:::;     ;   ;::::;     ;   ;:::;'          '\;:·´    ;   ;'`.    ¨,.·´::;'  ;:::;            ,'  ,'::::'\';  ;::'; 
-    ;  ,.-·:*'´¨'`*´\::\ '      ;  ;::;'\  '\    ;  ;:::;     ';  ;'::::;     ';   ;::/      ,·´¯';  °      ;  ';::; \*´\:::::;  ,':::;‘        ,.-·'  '·~^*'´¨,  ';::; 
-   ;   ;\::::::::::::'\;'      ;  ;:::;  '\  '\ ,'  ;:::;'     ;  ';:::';      ';   '·;'   ,.·´,    ;'\       ';  ,'::;   \::\;:·';  ;:::; '        ':,  ,·:²*´¨¯'`;  ;::'; 
-   ;  ;'_\_:;:: -·^*';\     ,' ,'::;'     '\   ¨ ,'\::;'      ';  ;::::;'     \'·.    `'´,.·:´';   ;::\'     ;  ';::;     '*´  ;',·':::;‘          ,'  / \::::::::';  ;::'; 
-   ';    ,  ,. -·:*'´:\:'\°   ;.'\::;        \`*´\::\; °      \*´\:::;‘      '\::\¯::::::::';   ;::'; ‘   \´¨\::;          \¨\::::;          ,' ,'::::\·²*'´¨¯':,'\:;  
-    \`*´ ¯\:::::::::::\;' '  \:::\'          '\:::\:' '         '\::\:;'         `·:\:::;:·´';.·´\::;'       '\::\;            \:\;·'           \`¨\:::/          \::\'  
-      \:::::\;::-·^*'´         \:'             `*´'‚             `*´‘              ¯      \::::\;'‚         '´¨               ¨'              '\::\;'            '\;'  '
-        `*´¯                                                                              '\:·´'                                              `¨'                   
-
+[........     [...     [..     [..        [....        [..       [..           [.       
+[..           [. [..   [..     [..      [.    [..      [. [..   [...          [. ..     
+[..           [.. [..  [..     [..     [..             [.. [.. [ [..         [.  [..    
+[......       [..  [.. [..     [..     [..             [..  [..  [..        [..   [..   
+[..           [..   [. [..     [..     [..   [....     [..   [.  [..       [...... [..  
+[..           [..    [. ..     [..      [..    [.      [..       [..      [..       [.. 
+[........     [..      [..     [..       [.....        [..       [..     [..         [..                                                                                   
 ````                                                                                                                                                                        
                                                                      
                      E N I G M A   S I M U L A T O R                
@@ -34,12 +28,15 @@ This project aims to simulate the core rotor mechanism of the Enigma machine in 
 ## Project Structure
 The command structure is rigid and clear.
 
-├── **`enigma_constants.py`** - The foundational laws of the machine.
-├── **`rotor_manager.py`** - Manages the rotation of the cipher wheels.
-├── **`enigma_core.py`** - The central engine of the device.
-├── **`enigma_simulator.py`** - The primary interface for operation.
-├── **`utils.py`** - Support functions for the war effort.
-└── **`RotorX.txt`** - An example rotor configuration file.
+├── **`enigma_constants.py`** - The foundational laws of the machine. \
+├── **`rotor_manager.py`** - Manages the rotation of the cipher wheels. \
+├── **`enigma_core.py`** - The central engine of the device. \
+├── **`enigma_simulator.py`** - The primary interface for operation. \
+├── **`utils.py`** - Support functions for the war effort. \
+└── **`RotorX.txt`** - An example rotor configuration file. 
 
 ## Operation
 To begin the simulation, execute the following command with authority:
+````
+python main.py
+````
