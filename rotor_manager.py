@@ -30,3 +30,21 @@ def get_inverse_wiring(wiring):
     for i, c in enumerate(wiring):
         inv[ALPHABET.index(c)] = ALPHABET[i]
     return "".join(inv)
+
+def load_rotor(rotor_index):
+    file_name = ROTOR_FILES[rotor_index - 1]
+    try:
+        with open(file_name, 'r') as f:
+            lines = [line.strip().upper() for line in f.readlines()]
+        wiring = lines[0] if len(lines) > 0 else ""
+        notch = lines[1] if len(lines) > 1 and lines[1] else "Z"
+        if not validate_wiring(wiring):
+            print(f"[ERROR] Invalid wiring in {file_name}")
+            return None
+        return Rotor(rotor_index, wiring, notch)
+    except FileNotFoundError:
+        print(f"[ERROR] File {file_name} not found")
+        return None
+    except Exception as e:
+        print(f"[ERROR] Failed reading {file_name}: {e}")
+        return None
