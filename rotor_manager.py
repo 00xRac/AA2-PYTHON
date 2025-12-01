@@ -48,3 +48,14 @@ def load_rotor(rotor_index):
     except Exception as e:
         print(f"[ERROR] Failed reading {file_name}: {e}")
         return None
+
+def save_rotor(rotor_index, wiring, notch):
+    file_name = ROTOR_FILES[rotor_index - 1]
+    try:
+        with open(file_name, 'w') as f:
+            f.write(wiring + '\n')
+            f.write(notch + '\n')
+        return True
+    except Exception as e:
+        print(f"[ERROR] Failed writing {file_name}: {e}")
+        return False
