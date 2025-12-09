@@ -39,14 +39,14 @@ def load_rotor(rotor_index):
         wiring = lines[0] if len(lines) > 0 else ""
         notch = lines[1] if len(lines) > 1 and lines[1] else "Z"
         if not validate_wiring(wiring):
-            print(f"[ERROR] Invalid wiring in {file_name}")
+            print(f"[ERROR] Permutació incorrecta — calen 26 lletres úniques A-Z en {file_name}")
             return None
         return Rotor(rotor_index, wiring, notch)
     except FileNotFoundError:
-        print(f"[ERROR] File {file_name} not found")
+        print(f"[ERROR] Fitxer {file_name} no trobat")
         return None
     except Exception as e:
-        print(f"[ERROR] Failed reading {file_name}: {e}")
+        print(f"[ERROR] Error al llegir {file_name}: {e}")
         return None
 
 def save_rotor(rotor_index, wiring, notch):
@@ -57,5 +57,5 @@ def save_rotor(rotor_index, wiring, notch):
             f.write(notch + '\n')
         return True
     except Exception as e:
-        print(f"[ERROR] Failed writing {file_name}: {e}")
+        print(f"[ERROR] Error al escriure {file_name}: {e}")
         return False
