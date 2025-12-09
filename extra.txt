@@ -1,0 +1,19 @@
+Bones, lector,
+si has arribat fins aquí després de mirar el nostre codi, potser t’ha cridat l’atenció que hàgim fet servir “classes”,
+tot i que aquest concepte no l’hem treballat a classe. Quan vam començar el projecte, necessitàvem una manera pràctica 
+d’agrupar tot el que defineix un rotor i també el funcionament principal de la màquina Enigma. Sense algun tipus d’estructura,
+acabàvem repetint el mateix codi moltes vegades o gestionant variables disperses, cosa que ho feia tot molt més confús.
+
+Per evitar això, vam decidir utilitzar aquest sistema. Ens permet crear una mena de “plantilla” on posem el comportament 
+d’un rotor (com gira, com transforma una lletra, quin és el seu cablejat, etc.) i després usar-la per crear tants rotors com calgui. 
+Cada rotor té el seu estat i funciona de manera independent, però tots segueixen les mateixes normes que hem definit. 
+Això ens ha facilitat fer proves, detectar errors i mantenir el projecte ordenat.
+Amb el nucli de la màquina passa el mateix. Tenir-ho tot dins d’una sola estructura ens permet concentrar-hi el mecanisme d’avanç,
+el pas de les lletres i l’ordre de transformació. D’aquesta manera evitem tenir funcions disperses per tot arreu i la lògica queda 
+més clara. A més, si necessitàvem canviar com avançaven els rotors o com es feien les transformacions, només calia modificar aquest 
+bloc i no revisar tot el programa.
+
+La part del README.md esta feta amb IA, però la hem fet servir perque ens ajudi alhora de estructurar tot el text perque sigui en MarkDown
+
+En resum, hem fet servir aquest sistema perquè ens ha permès tenir un codi més net,
+entenedor i molt més fàcil de modificar mentre anàvem desenvolupant la nostra simulació de l’Enigma.
