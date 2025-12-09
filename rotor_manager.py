@@ -1,4 +1,4 @@
-from enigma_constants import ALPHABET
+from enigma_constants import ALPHABET, ROTOR_FILES
 
 class Rotor:
     def __init__(self, index, wiring, notch="Z"):
