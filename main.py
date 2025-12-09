@@ -5,8 +5,9 @@ from enigma_core import EnigmaMachine
 from utils import preprocess_message, format_output, save_to_file
 from rotor_manager import save_rotor, validate_wiring
 
+#Codi de CTRL+C sacat del streamer/hacker s4vitar.
 def handle_sigint(signum, frame):
-    print("\n\n[!] Sortind...")
+    print("\n\n[!] Sortint ...")
     exit(0)
     
 signal.signal(signal.SIGINT, handle_sigint)
@@ -43,11 +44,13 @@ def main():
         # --- 1. XIFRAR MISSATGE ---
         if opcio == '1':
             print("\n--- XIFRATGE ---")
-            
-            # Comprovem que existeix el fitxer d'entrada
-            if not os.path.exists("Missatge.txt"):
-                print("[ERROR] No trobo el fitxer 'Missatge.txt'. Crea'l abans de començar.")
-                continue
+            # Demanem al usuari que intrudueixi el missatge
+            entrada_usuari = input("Introdueix el missatge a xifrar: ")
+
+            # Guardem el missatge en el fitxer
+            with open("Missatge.txt", 'w', encoding='utf-8') as f:
+                f.write(entrada_usuari)
+            print("[INFO] Missatge guardat temporalment a 'Missatge.txt'.")
 
             try:
                 # Llegim el missatge original
@@ -70,7 +73,10 @@ def main():
                 
                 # Guardem a disc
                 if save_to_file(ENCRYPTED_FILE, resultat_final):
-                    print(f"[OK] Missatge guardat correctament a '{ENCRYPTED_FILE}'")
+                    # Calculem les estadistiques arrodonint cap amunt
+                    num_lletres = len(text_xifrat)
+                    num_grups = (num_lletres + 4) // 5
+                    print(f"[OK] Missatge guardat correctament a '{ENCRYPTED_FILE}' ({num_lletres} lletres, {num_grups} grups de 5)")
 
             except Exception as e:
                 print(f"[ERROR] Alguna cosa ha fallat durant el xifratge: {e}")
