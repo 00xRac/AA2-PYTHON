@@ -64,5 +64,5 @@ Tot i que no hem donat el concepte de **Programació Orientada a Objectes (POO)*
 * Simplificar la lògica de l'efecte "odòmetre" (pas dels rotors).
 
 ## 6. Autors
-* **[Oscar Ferre Obon]**
-* **[Joel Díaz Serrano]**
+* **Oscar Ferre Obon**
+* **Joel Díaz Serrano**
