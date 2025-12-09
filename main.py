@@ -6,7 +6,7 @@ from utils import preprocess_message, format_output, save_to_file
 from rotor_manager import save_rotor, validate_wiring
 
 def handle_sigint(signum, frame):
-    print("\n\n[!] Exiting...")
+    print("\n\n[!] Sortind...")
     exit(0)
     
 signal.signal(signal.SIGINT, handle_sigint)
