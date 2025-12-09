@@ -38,7 +38,7 @@ En executar el programa (`python main.py`), es mostrarà el següent menú inter
 4.  **Sortir**: Tanca l'aplicació.
 
 ### Configuració Inicial (Window Setting)
-Abans de xifrar o desxifrar, el sistema demanarà la **posició inicial dels rotors** (tres lletres, p. ex., `A B C`). Aquestes actuen com les "finestres" visibles a la màquina original.
+Abans de xifrar o desxifrar, el sistema demanarà la **posició inicial dels rotors** (tres lletres, p. ex., `A B C`). 
 
 ## 4. Gestió de Fitxers (Input/Output)
 
