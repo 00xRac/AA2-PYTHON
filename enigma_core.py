@@ -1,4 +1,4 @@
-from enigma_constants import ALPHABET
+from enigma_constants import ALPHABET, ROTOR_FILES
 from rotor_manager import load_rotor
 
 class EnigmaMachine:
