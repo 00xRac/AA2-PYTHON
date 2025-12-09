@@ -1,8 +1,15 @@
 import os
+import signal
 from enigma_constants import ALPHABET, ROTOR_FILES, ENCRYPTED_FILE, DECRYPTED_FILE
 from enigma_core import EnigmaMachine
 from utils import preprocess_message, format_output, save_to_file
 from rotor_manager import save_rotor, validate_wiring
+
+def handle_sigint(signum, frame):
+    print("\n\n[!] Exiting...")
+    exit(0)
+    
+signal.signal(signal.SIGINT, handle_sigint)
 
 def demanar_posicio_inicial():
     """
