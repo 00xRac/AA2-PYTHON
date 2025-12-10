@@ -22,8 +22,15 @@ class Rotor:
         return ALPHABET[(ALPHABET.index(c) - self.position) % 26]
 
 def validate_wiring(wiring):
-    return len(wiring) == 26 and set(wiring) == set(ALPHABET)
-
+    wiring = wiring.upper().strip()
+    seen = set()
+    for ch in wiring:
+        if ch not in ALPHABET:
+            return False  #caracter invalid
+        if ch in seen:
+            return False  #caracter duplicat
+        seen.add(ch)
+    return True
 
 def get_inverse_wiring(wiring):
     inv = [''] * 26
