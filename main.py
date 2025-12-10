@@ -5,7 +5,7 @@ from enigma_core import EnigmaMachine
 from utils import preprocess_message, format_output, save_to_file
 from rotor_manager import save_rotor, validate_wiring, load_rotor
 
-#Codi de CTRL+C sacat del streamer/hacker s4vitar.
+#Codi de CTRL+C extret del streamer/hacker s4vitar.
 def handle_sigint(signum, frame):
     print("\n\n[!] Sortint ...")
     exit(0)
@@ -41,15 +41,25 @@ def edit_rotors_option():
     print("\n--- Editar Rotors ---")
     try:
         idx = int(input("Quin rotor vols editar? (1-3): "))
-        if idx not in [1,2,3]: print("[ERROR] Invalid index."); return
-    except ValueError: print("[ERROR] Input invalid."); return
-    wiring = input("nou cablejat de 26 lletres: ").upper().replace(" ", "").strip()
+        if idx not in [1, 2, 3]:
+            print("[ERROR] Index invalid")
+            return
+    except ValueError:
+        print("[ERROR] Input invalid")
+        return
+    wiring = input("Nou cablejat de 26 lletres: ").upper().strip()
+    print(wiring)
     if validate_wiring(wiring):
         old_rotor = ROTORS[idx-1]
-        notch = input(f"Nova marca (En blanc per {old_rotor.notch if old_rotor else 'Z'}): ").strip().upper() or (old_rotor.notch if old_rotor else "Z")
+        default_notch = old_rotor.notch if old_rotor else "Z"
+        notch_input = input(f"Nova marca (En blanc per {default_notch}): ").strip().upper()
+        notch = notch_input if notch_input in ALPHABET else default_notch
+
         if save_rotor(idx, wiring, notch):
-            print(f"[OK] Rotor {idx} Actualitzat.")
+            print(f"[OK] Rotor {idx} actualitzat.")
             load_all_rotors()
+    else:
+        print("[ERROR] El cablejat ha de contenir 26 lletres úniques A-Z")
 
 def main():
     continuar = True
@@ -128,8 +138,11 @@ def main():
                 text_pla = maquina.process_text(text_entrada, mode='decrypt')
 
                 if save_to_file(DECRYPTED_FILE, text_pla):
+                    blocks = [text_pla[i:i+5] for i in range(0, len(text_pla), 5)]
+                    formatted_text = " ".join(blocks)
+                    
                     print(f"[OK] Missatge recuperat guardat a '{DECRYPTED_FILE}'")
-                    print(f"Missatge: {text_pla[:50]}...")
+                    print(f"Missatge: {formatted_text}")
 
             except Exception as e:
                 print(f"[ERROR] Alguna cosa ha fallat durant el desxifratge: {e}")
