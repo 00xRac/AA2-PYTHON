@@ -1,9 +1,9 @@
 import os
 import signal
-from enigma_constants import ALPHABET, ROTOR_FILES, ENCRYPTED_FILE, DECRYPTED_FILE
+from enigma_constants import ALPHABET, ENCRYPTED_FILE, DECRYPTED_FILE
 from enigma_core import EnigmaMachine
 from utils import preprocess_message, format_output, save_to_file
-from rotor_manager import save_rotor, validate_wiring
+from rotor_manager import save_rotor, validate_wiring, load_rotor
 
 #Codi de CTRL+C sacat del streamer/hacker s4vitar.
 def handle_sigint(signum, frame):
@@ -11,6 +11,8 @@ def handle_sigint(signum, frame):
     exit(0)
     
 signal.signal(signal.SIGINT, handle_sigint)
+
+ROTORS = [None] * 3
 
 def demanar_posicio_inicial():
     """
@@ -26,6 +28,28 @@ def demanar_posicio_inicial():
             return lletres
         else:
             print("[ERROR] Has d'introduir exactament 3 lletres (A-Z). Torna-ho a provar.")
+
+def load_all_rotors():
+    all_ok = True
+    for i in range(1, 4):
+        r = load_rotor(i)
+        ROTORS[i-1] = r
+        if r is None: all_ok = False
+    return all_ok
+
+def edit_rotors_option():
+    print("\n--- Editar Rotors ---")
+    try:
+        idx = int(input("Quin rotor vols editar? (1-3): "))
+        if idx not in [1,2,3]: print("[ERROR] Invalid index."); return
+    except ValueError: print("[ERROR] Input invalid."); return
+    wiring = input("nou cablejat de 26 lletres: ").upper().replace(" ", "").strip()
+    if validate_wiring(wiring):
+        old_rotor = ROTORS[idx-1]
+        notch = input(f"Nova marca (En blanc per {old_rotor.notch if old_rotor else 'Z'}): ").strip().upper() or (old_rotor.notch if old_rotor else "Z")
+        if save_rotor(idx, wiring, notch):
+            print(f"[OK] Rotor {idx} Actualitzat.")
+            load_all_rotors()
 
 def main():
     continuar = True
@@ -112,27 +136,7 @@ def main():
 
         # --- 3. EDITAR ROTORS ---
         elif opcio == '3':
-            print("\n--- EDITOR DE ROTORS ---")
-            rotor_num = input("Quin rotor vols canviar? (1, 2 o 3): ")
-            
-            if rotor_num in ['1', '2', '3']:
-                print(f"Configurant Rotor {rotor_num}...")
-                nou_wiring = input("Introdueix la nova permutació (26 lletres úniques): ").upper().strip()
-
-                if validate_wiring(nou_wiring):
-                    notch = input("Introdueix la lletra de notch (salt): ").upper().strip()
-                    # Si l'usuari no posa res, per defecte és Z (com diu el PDF)
-                    if not notch or notch not in ALPHABET:
-                        notch = "Z"
-                        print("Avis: S'ha assignat el notch 'Z' per defecte.")
-                    
-                    # Guardem fent servir la funció que ja tenim al rotor_manager
-                    if save_rotor(int(rotor_num), nou_wiring, notch):
-                        print(f"[OK] Rotor {rotor_num} actualitzat.")
-                else:
-                    print("[ERROR] La permutació no és vàlida. Ha de tenir 26 lletres sense repetir.")
-            else:
-                print("[ERROR] Opció incorrecta. Només hi ha rotors 1, 2 o 3.")
+            edit_rotors_option()
 
         # --- 4. SORTIR ---
         elif opcio == '4':
